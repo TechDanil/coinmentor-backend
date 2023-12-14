@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 import bcrypt from 'bcrypt';
 import { PASSWORD_HASH_LENGTH } from '../constants/index.constants';
 
-Entity()
+@Entity()
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!: number;

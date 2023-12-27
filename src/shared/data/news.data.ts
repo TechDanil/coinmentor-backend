@@ -5,7 +5,7 @@ export const newsData: INews[] = [
         id: 1,
         price: 41.15, 
         isGrowing: false,
-        date: '11.12.2023 8.30 AM',
+        date: new Date('2023-11-12T08:30:00Z'),
         title: ' Fivamus sagittis lacus vel augue laoreet rutrum faucibus dolor',
         source: 'Some source',
         tags: [
@@ -32,7 +32,7 @@ export const newsData: INews[] = [
         id: 2,
         price: 41.19, 
         isGrowing: true,
-        date: '11.12.2023 8.30 AM',
+        date: new Date('2023-11-12T08:30:00Z'),
         title: ' Fivamus sagittis lacus vel augue laoreet rutrum faucibus dolor',
         source: 'Some source',
         tags: [
@@ -55,7 +55,7 @@ export const newsData: INews[] = [
         id: 3,
         price: 41.13, 
         isGrowing: false,
-        date: '11.12.2023 8.30 AM',
+        date: new Date('2023-11-12T08:30:00Z'),
         title: ' Fivamus sagittis lacus vel augue laoreet rutrum faucibus dolor',
         source: 'Some source',
         tags: [
@@ -74,7 +74,7 @@ export const newsData: INews[] = [
         id: 4,
         price: 41.23, 
         isGrowing: true,
-        date: '11.12.2023 8.30 AM',
+        date: new Date('2023-11-12T08:30:00Z'),
         title: ' Fivamus sagittis lacus vel augue laoreet rutrum faucibus dolor',
         source: 'Some source',
         tags: [
@@ -93,7 +93,7 @@ export const newsData: INews[] = [
         id: 5,
         price: 41.19, 
         isGrowing: true,
-        date: '11.12.2023 8.30 AM',
+        date: new Date('2023-11-12T08:30:00Z'),
         title: ' Fivamus sagittis lacus vel augue laoreet rutrum faucibus dolor',
         source: 'Some source',
         tags: [

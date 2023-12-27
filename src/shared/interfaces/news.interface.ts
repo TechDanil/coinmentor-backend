@@ -1,6 +1,6 @@
 export interface INews {
     id: number;
-    date: string;
+    date: Date;
     isGrowing: boolean;
     title: string;
     price: number;

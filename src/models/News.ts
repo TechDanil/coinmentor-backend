@@ -21,6 +21,6 @@ export class News extends BaseEntity {
     @Column()
     source!: string;
 
-    @Column()
+    @Column('simple-array')
     tags!: ITag[];
 }

@@ -2,18 +2,21 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import express from 'express';
 import cors from 'cors';
-import authRouter from './routers/authRouter';
-import newsRouter from './routers/newsRouter';
+import authRouter from './routers/auth.router';
+import newsRouter from './routers/news.router';
 import { entities as userEntities } from './shared/schemas/userSchema'; 
 import { entities as newsEntities } from './shared/schemas/newsSchema';
+import { entities as tokenEntities } from './shared/schemas/tokenSchema';
 import dotenv from 'dotenv';
+import { errorMiddleware } from './middleware/error.middleware';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const allEntities = [...userEntities, ...newsEntities];
+const allEntities = [...userEntities, ...newsEntities, ...tokenEntities];
 
 createConnection({
     type: 'postgres',
@@ -32,8 +35,10 @@ createConnection({
         credentials: true,
     }));
     app.use(express.json());
+    app.use(cookieParser());
     app.use('/api', authRouter);
     app.use('/api', newsRouter);
+    app.use(errorMiddleware);
 
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);

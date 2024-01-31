@@ -4,6 +4,7 @@ import AuthController from '../controllers/auth.controller'
 
 const authRouter = express.Router()
 
+authRouter.get('/auth/refresh', AuthController.refresh)
 authRouter.post(
 	'/auth/register',
 	body('username').isLength({ min: 5 }),
@@ -14,6 +15,6 @@ authRouter.post(
 
 authRouter.post('/auth/login', AuthController.login)
 authRouter.post('/auth/logout', AuthController.logout)
-authRouter.get('/auth/refresh', AuthController.refresh)
+authRouter.post('/auth/forgot-password', AuthController.recover)
 
 export default authRouter

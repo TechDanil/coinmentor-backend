@@ -65,6 +65,22 @@ class AuthController {
 			next(error)
 		}
 	}
+
+	recover = async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			const { email } = req.body
+
+			await authService.recoverPassword(email)
+
+			console.log('recover in controller has worked!')
+
+			return res.json({
+				message: 'Password reset instructions sent to your email.',
+			})
+		} catch (error) {
+			next(error)
+		}
+	}
 }
 
 export default new AuthController()

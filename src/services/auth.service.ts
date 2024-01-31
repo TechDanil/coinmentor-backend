@@ -5,6 +5,7 @@ import { ILogin, IRegister } from '../shared/interfaces/auth.interface'
 import { PASSWORD_SALT_LENGTH } from '../constants/index.constants'
 import AuthDto from '../dtos/auth.dto'
 import ApiException from '../exceptions/api.exceptions'
+import mailService from './mail.service'
 import tokenService from './token.service'
 
 class AuthService {
@@ -92,6 +93,24 @@ class AuthService {
 			...tokens,
 			user: userDto,
 		}
+	}
+
+	recoverPassword = async (email: string) => {
+		const user = await User.findOne({ where: { email } })
+
+		if (!user) {
+			throw ApiException.BadRequest('User is not found')
+		}
+
+		const userDto = new AuthDto(user as User)
+
+		const { refreshToken } = tokenService.generateTokens({ ...userDto })
+
+		const recoveryLink = `${process.env.UI_DEV_URL}/forgot-password/${refreshToken}`
+
+		await mailService.sendRecoverPassword(user.email, recoveryLink)
+
+		console.log('recoverPassword in service has worked!')
 	}
 }
 

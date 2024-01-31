@@ -1,6 +1,8 @@
-import jwt from 'jsonwebtoken';
-import { ACCESS_TOKEN_EXPIRATION } from '../../constants/index.constants';
+import { ACCESS_TOKEN_LIFE } from 'constants/index.constants'
+import jwt from 'jsonwebtoken'
 
-export const generateAccessToken  = (userId: number): string => {
-    return jwt.sign({ userId }, process.env.JWT_SECRET as string, { expiresIn: ACCESS_TOKEN_EXPIRATION });
+export const generateAccessToken = (userId: number): string => {
+	return jwt.sign({ userId }, process.env.JWT_SECRET as string, {
+		expiresIn: ACCESS_TOKEN_LIFE,
+	})
 }

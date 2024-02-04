@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt'
-import { User } from '../models/User'
-import { ILogin, IRegister } from '../shared/interfaces/auth.interface'
-
+import { REST_PASSWORD_SCREEN } from '../config/index.config'
 import { PASSWORD_SALT_LENGTH } from '../constants/index.constants'
 import AuthDto from '../dtos/auth.dto'
 import ApiException from '../exceptions/api.exceptions'
+import { User } from '../models/User'
+import { ILogin, IRegister } from '../shared/interfaces/auth.interface'
 import mailService from './mail.service'
 import tokenService from './token.service'
 
@@ -102,11 +102,7 @@ class AuthService {
 			throw ApiException.BadRequest('User is not found')
 		}
 
-		const userDto = new AuthDto(user as User)
-
-		const { refreshToken } = tokenService.generateTokens({ ...userDto })
-
-		const recoveryLink = `${process.env.UI_DEV_URL}/forgot-password/${refreshToken}`
+		const recoveryLink = `${process.env.UI_DEV_URL}/${REST_PASSWORD_SCREEN}`
 
 		await mailService.sendRecoverPassword(user.email, recoveryLink)
 
